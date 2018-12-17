@@ -3,6 +3,7 @@
 \usepackage[autostyle]{csquotes}
 \usepackage{fancybox}
 \usepackage{graphicx}
+\usepackage{hyperref}
 %\usepackage{subcaption}
 \usepackage{tabulary}
 \usepackage{tabularx}
@@ -35,8 +36,9 @@
 			\textbf{Config Slots}
 			\begin{itemize}
 				\item<3->{Synchrone Verschlüsselung}
-				\item<3->{Challenge Response}
 				\item<3->{Yubico OTP}
+				\item<3->{HOTP}
+				\item<3->{Challenge Response}
 			\end{itemize}
 		\column{0.33\textwidth}
 			\textbf{PGP Smartcard}
@@ -57,29 +59,51 @@
 
 \begin{frame}
 \frametitle{Second Factor}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\textbf{Website Login}
+				\begin{itemize}
+					\item{Yubico OTP}
+					\item{generate OTP with yubikey, gets validated agains yubico cloud (they need to know the symmetric key)}
+				\end{itemize}
+		\pause
+		\column{0.5\textwidth}
+			\textbf{Password Manager}
+				\begin{itemize}
+					\item{Using Challenge Response}
+					\item{KeepassXC (or KeepassX with Plugin)}
+					\item{hash of database, as input to challenge, result gets appended to pasword}
+				\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Second Factor}
+	\textbf{HOTP}
+		\begin{itemize}
+			\item{Google Authentication (TOTP)}
+			\item{TOTP basiert HTOP}
+			\item{Synchrone keys werden auf yubikey gelegt}
+			\item{Generierung der keys mit app sowohl auf android als auch linux}
+		\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rechner login}
+	\begin{itemize}
+		\item{Using PIV Smartcard}
+		\item{Sign Challenge with Private Key}
+		\item{OpenSC + PAM \url{https://github.com/OpenSC/pam_p11}}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{SSH Authentication}
+	\begin{itemize}
+		\item{Export PGP Public key as SSH key}
+		\item{Use gpg-agent als ssh-agent}
+	\end{itemize}
 \end{frame}
 
 \end{document}
 
-%	\begin{columns}
-%		\column{0.45\textwidth}
-%			\begin{itemize}
-%				\item<1->{proprietary bluetooth protocol}
-%				\item<1->{detects 5 predefined gestures}
-%				\item<2->{access to raw IMU and EMG data}
-%			\end{itemize}
-%		\column{0.55\textwidth}
-%			\begin{figure}[h]
-%				\center
-%				\includegraphics[width=1\textwidth]{images/myo_armband.jpg}
-%				\caption{MYO stock photo\cite{myopic}}
-%			\end{figure}
-%	\end{columns}
