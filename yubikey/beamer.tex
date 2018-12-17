@@ -4,17 +4,14 @@
 \usepackage{fancybox}
 \usepackage{graphicx}
 \usepackage{hyperref}
-%\usepackage{subcaption}
 \usepackage{tabulary}
 \usepackage{tabularx}
 \usepackage[export]{adjustbox}
-%\usepackage[style=numeric]{biblatex}
-%\addbibresource{library.bib}
  
  
-\title{Yubikey Wat is dat? Wat kann dat?}
+\title{Yubikey}
 \author{judge}
-\date{}
+\date{20.12.2018}
 
 \usetheme{metropolis}
 \usecolortheme{default}
@@ -24,6 +21,16 @@
 \frame{\titlepage}
 
 %\section{One Key to rule them all}
+
+\begin{frame}
+\frametitle{Hardware Security Token}
+	\begin{itemize}
+		\item{Do Crypto stuff external device}
+		\item{No need for multiple keys or copying of keys to different machines}
+		\item{There are many Hardware Security tokens, yubikey is a nice low cost variant}
+	\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{One Key to rule them all}
 	\begin{figure}[h]
@@ -32,27 +39,26 @@
 	\end{figure}
 	\begin{columns}
 		\column{0.33\textwidth}
-			\pause
 			\textbf{Config Slots}
 			\begin{itemize}
-				\item<3->{Synchrone Verschlüsselung}
-				\item<3->{Yubico OTP}
-				\item<3->{HOTP}
-				\item<3->{Challenge Response}
+				\item{symmetric encryption}
+				\item{Yubico OTP}
+				\item{HOTP}
+				\item{Challenge Response}
 			\end{itemize}
 		\column{0.33\textwidth}
-			\textbf{PGP Smartcard}
+			\textbf{PGP Smart-card}
 			\begin{itemize}
-				\item<4->{Asynchrone Verschlüsselung}
-				\item<4->{Encryption}
-				\item<4->{Signing}
-				\item<4->{Authentication}
+				\item{asymmetric encryption}
+				\item{Encryption}
+				\item{Signing}
+				\item{Authentication}
 			\end{itemize}
 		\column{0.33\textwidth}
-			\textbf{PIV Smartcard}
+			\textbf{PIV Smart-card}
 			\begin{itemize}
-				\item<5->{Asynchrone Verschlüsselung}
-				\item<5->{4 Slots usable for multiple purposes}
+				\item{asymmetric encryption}
+				\item{4 Slots usable for multiple purposes}
 			\end{itemize}
 	\end{columns}
 \end{frame}
@@ -64,15 +70,15 @@
 			\textbf{Website Login}
 				\begin{itemize}
 					\item{Yubico OTP}
-					\item{generate OTP with yubikey, gets validated agains yubico cloud (they need to know the symmetric key)}
+					\item{generate OTP with yubikey, gets validated against yubico cloud (they need to know the symmetric key)}
 				\end{itemize}
 		\pause
 		\column{0.5\textwidth}
 			\textbf{Password Manager}
 				\begin{itemize}
-					\item{Using Challenge Response}
+					\item{using challenge response}
 					\item{KeepassXC (or KeepassX with Plugin)}
-					\item{hash of database, as input to challenge, result gets appended to pasword}
+					\item{hash of database, as input to challenge, result gets appended to password}
 				\end{itemize}
 	\end{columns}
 \end{frame}
@@ -82,18 +88,27 @@
 	\textbf{HOTP}
 		\begin{itemize}
 			\item{Google Authentication (TOTP)}
-			\item{TOTP basiert HTOP}
-			\item{Synchrone keys werden auf yubikey gelegt}
-			\item{Generierung der keys mit app sowohl auf android als auch linux}
+			\item{TOTP based on HTOP}
+			\item{symmetric keys stored on yubikey}
+			\item{generating otp is possible on all platforms}
 		\end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Rechner login}
+\frametitle{PC login}
 	\begin{itemize}
-		\item{Using PIV Smartcard}
+		\item{Using PIV smart-card}
 		\item{Sign Challenge with Private Key}
 		\item{OpenSC + PAM \url{https://github.com/OpenSC/pam_p11}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{PGP Smart-card}
+	\begin{itemize}
+		\item{Up to 3 slots for, encryption, signing, authentication}
+		\item{Can configure key press for each action}
+		\item{move keys to yubikey \url{https://roll.urown.net/desktop/secrets/yubikey_gpg.html}}
 	\end{itemize}
 \end{frame}
 
@@ -102,6 +117,7 @@
 	\begin{itemize}
 		\item{Export PGP Public key as SSH key}
 		\item{Use gpg-agent als ssh-agent}
+		\item{agent forwarding is possible}
 	\end{itemize}
 \end{frame}
 
